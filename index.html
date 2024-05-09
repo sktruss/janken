@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>じゃんけん
+    </title>
+</head>
+<body>
+    <div class="center">
+        <header>
+            <h1>じゃんけんしよう！</h1>
+        </header>
+
+        <main>
+
+            <div><img src="img/jan.png" alt="" width="300px" height="300px"></div>
+         
+
+
+            こっちが出す手を選ぼう！<br>
+            下のボタンから手を選んでね！<br>
+            <div class="buttons">
+                <!-- <button onclick="r_click();">じゃんけんする</button> -->
+                <button onclick="r_click(0)"><img src="img/jan0.png" alt="" width="200px" height="200px"></button>
+                
+                <button onclick="r_click(1)"><img src="img/jan1.png" alt="" width="200px" height="200px"></button>
+                
+                <button onclick="r_click(2)"><img src="img/jan2.png" alt="" width="200px" height="200px"></button>
+                <p id="jan1"></p>
+                <p id="jan2"></p>
+            </div>
+
+            <div class = "center">
+                <img src="" alt="" id="Image" width="200px" height="200px">
+            </div>
+            <h3 id="katimake"></h3>
+
+        </main>
+
+        <footer></footer>
+
+        <script>
+            // あとで表示させる画像を消す →うまくいかなかった。
+            // window.document.getElementById("Image").style.display = "block";
+
+        // プレイヤーの配列を定義
+            let p_janken = ["グー","チョキ","パー"];
+            
+            // 関数を定義
+            let  r_click = function (p_janken_r) {
+
+                // 相手側の配列を定義
+                let janken = ["グー","チョキ","パー"];
+
+                // 相手側の乱数を定義
+                let janken_r = Math.floor(Math.random()*3);
+              
+               
+               
+                // 相手の画像を指定
+
+                if (janken_r == 0) {
+                    janken_image = "img/jan0.png"
+                } else if (janken_r == 1) {
+                    janken_image = "img/jan1.png"
+                } else {
+                    janken_image = "img/jan2.png"
+                }
+
+
+                // 相手の画像を表示
+                let Image = document.querySelector("#Image");
+                // Image.width = "200px";
+                // Image.height = "200px";
+                Image.src = janken_image;
+             
+
+            
+
+                // 文字列の定義
+                let Result_end = String;
+
+                    // 勝ち負け判定
+                    if (janken_r == p_janken_r) {
+                        Result_end = "あいこです";
+                    } else if (p_janken_r == 0 && janken_r == 1){
+                        Result_end = "あなたの勝ちです";
+                    } else if (p_janken_r == 1 && janken_r == 2){
+                        Result_end = "あなたの勝ちです";
+                    } else if (p_janken_r == 2 && janken_r == 3){
+                        Result_end = "あなたの勝ちです";
+                    } else {
+                        Result_end = "あなたの負けです";
+                    }
+
+                // HTML表示
+                window.document.getElementById("jan1").innerHTML = "あなたは" + p_janken[p_janken_r];
+                window.document.getElementById("jan2").innerHTML = "相手は" + janken[janken_r] ;
+                window.document.getElementById("katimake").innerHTML = Result_end;
+                
+                // 一定時間たったらリロード
+                window.setTimeout(function(){
+                    location.reload();
+                },1800);
+                window.console.log(janken_r);
+            }
+
+
+
+
+        </script>
+
+
+
+
+
+
+
+    </div>
+</body>
+
+
+
+</html>
